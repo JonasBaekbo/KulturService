@@ -26,6 +26,13 @@ public class User {
     @JsonBackReference
     private Set<Venue> venuesLiked = new HashSet<>();
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "band_like",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "band_id")
+    )
+    @JsonBackReference
+    private Set<Band> bandsLiked = new HashSet<>();
 
 }

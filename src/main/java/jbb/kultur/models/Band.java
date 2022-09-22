@@ -1,5 +1,6 @@
 package jbb.kultur.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,4 +17,8 @@ public class Band {
 
     @OneToMany(mappedBy = "band")
     private Set<Event> events = new HashSet<>();
+
+    @ManyToMany(mappedBy = "bandsLiked")
+    @JsonBackReference
+    private Set<User> userLikes = new HashSet<>();
 }
