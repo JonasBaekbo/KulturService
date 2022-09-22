@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @RestController
@@ -27,12 +28,14 @@ public class EventController {
 
     }
     @PostMapping("/createEvent")
-    public ResponseEntity<String> createEvent(@RequestBody Event event, @RequestParam Long bandID) {
+    public ResponseEntity<String> createEvent(@RequestBody Event event, @RequestParam Long bandID, @RequestParam Timestamp time
+    ) {
 
         // Hent band
         Optional<Band> band = bandService.findById(bandID);
         if (band.isPresent()) {
             event.setBand(band.get());
+            event.setTimestamp(time);
             eventService.save(event);
             return new ResponseEntity<>("Oprettet event", HttpStatus.OK);
         } else {

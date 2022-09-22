@@ -5,9 +5,12 @@ import jbb.kultur.services.IBandService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class BandController {
@@ -25,5 +28,9 @@ public class BandController {
         }
         return new ResponseEntity<>(msg, HttpStatus.OK);
 
+    }
+    @GetMapping("/getBandByName")
+    public ResponseEntity<List<Band>> getBandByName(String name){
+        return new ResponseEntity<>(bandService.findBandByName(name), HttpStatus.OK);
     }
 }

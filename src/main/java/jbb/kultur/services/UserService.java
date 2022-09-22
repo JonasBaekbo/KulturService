@@ -1,9 +1,11 @@
 package jbb.kultur.services;
 
+import jbb.kultur.models.Band;
 import jbb.kultur.models.User;
 import jbb.kultur.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -37,6 +39,11 @@ public class UserService implements IUserService{
 
     @Override
     public Optional<User> findById(Long aLong) {
-        return Optional.empty();
+        return userRepository.findById(aLong);
+    }
+
+    @Override
+    public List<User> findUserByName(String name) {
+        return userRepository.findBandByName(name);
     }
 }

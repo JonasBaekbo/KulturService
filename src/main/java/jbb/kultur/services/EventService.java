@@ -37,6 +37,6 @@ public class EventService implements IEventService{
 
     @Override
     public Optional<Event> findById(Long aLong) {
-        return Optional.empty();
+        return eventRepository.findById(aLong);
     }
 }
