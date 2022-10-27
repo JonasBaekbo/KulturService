@@ -6,6 +6,7 @@ import jbb.kultur.models.Venue;
 import jbb.kultur.services.IBandService;
 import jbb.kultur.services.IUserService;
 import jbb.kultur.services.IVenueService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +15,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 public class UserController {
     private IUserService userService;
     private IVenueService venueService;
     private IBandService bandService;
-    public UserController(IUserService userService, IVenueService venueService, IBandService bandService){
+    /*public UserController(IUserService userService, IVenueService venueService, IBandService bandService){
         this.userService = userService;
         this.venueService = venueService;
         this.bandService = bandService;
-    }
+    }*/
     @PostMapping("/createUser")
     public ResponseEntity<String> createUser(@RequestBody User user){
         String msg="";
         if (userService.save(user)!=null){
-            msg="Bruger oprettet: " + user.getName();
+            msg="Bruger oprettet: " + user.getUsername();
         }else{
-            msg="Fejl i oprettelsen af " + user.getName();
+            msg="Fejl i oprettelsen af " + user.getUsername();
         }
             return new ResponseEntity<>(msg, HttpStatus.OK);
 

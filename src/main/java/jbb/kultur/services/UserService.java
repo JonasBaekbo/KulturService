@@ -44,6 +44,6 @@ public class UserService implements IUserService{
 
     @Override
     public List<User> findUserByName(String name) {
-        return userRepository.findBandByName(name);
+        return userRepository.findUserByUsername(name);
     }
 }
